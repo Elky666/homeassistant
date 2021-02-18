@@ -1,0 +1,29 @@
+id: 'lights_bedroom_2_off_weekdays'
+alias: Lights Bedroom 2 Off Weekdays
+initial_state: true
+trigger:
+  - platform: time
+    at: "22:55:00"
+condition:
+  - condition: state
+    entity_id: calendar.holidays
+    state: "off"
+  - condition: state
+    entity_id: sun.sun
+    state: "below_horizon"
+  - condition: state
+    entity_id: person.amelia
+    state: "home"
+  - condition: time
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - sun
+action:
+  - service: light.turn_off
+    data:
+      entity_id: light.amelia_s_lamp
+      transition: 300
+mode: single

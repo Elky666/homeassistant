@@ -1,0 +1,23 @@
+id: 'lights_bedroom_2_off_weekends'
+alias: Lights Bedroom 2 Off Weekends
+initial_state: true
+trigger:
+  - platform: time
+    at: "23:55:00"
+condition:
+  - condition: state
+    entity_id: sun.sun
+    state: "below_horizon"
+  - condition: state
+    entity_id: person.amelia
+    state: "home"
+  - condition: time
+    weekday:
+    - fri
+    - sat
+action:
+  - service: light.turn_off
+    data:
+      entity_id: light.amelia_s_lamp
+      transition: 300
+mode: single
