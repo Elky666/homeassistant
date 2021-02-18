@@ -1,0 +1,17 @@
+id: 'lights_bedroom_2_on'
+alias: Lights Bedroom 2 On
+initial_state: true
+trigger:
+  - platform: sun
+    event: sunset
+condition:
+  - condition: state
+    entity_id: person.amelia
+    state: "home"
+action:
+  - service: light.turn_on
+    data:
+      entity_id: light.amelia_s_lamp
+      brightness: 255
+      transition: 5
+mode: single
