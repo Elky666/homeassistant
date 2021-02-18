@@ -1,0 +1,23 @@
+id: 'lights_general_off'
+alias: Lights General Off
+initial_state: true
+trigger:
+  - platform: sun
+    event: sunrise
+condition:
+  - condition: state
+    entity_id: sun.sun
+    state: "above_horizon"
+action:
+  - service: light.turn_off
+    data:
+      entity_id:
+        - light.amelia_s_lamp
+        - light.damian_s_lamp
+        - light.headboard
+        - light.janet_s_lamp
+        - light.kitchen_strip
+        - light.tv_strip
+        - light.table_lamp
+        - light.tyler_s_lamp
+mode: single
